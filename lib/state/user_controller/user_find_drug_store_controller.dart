@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:new_project1/state/pharmacies_controller.dart';
+import 'package:new_project1/state/user_controller/pharmacies_controller.dart';
 import 'dart:developer';
 
 import 'package:permission_handler/permission_handler.dart';

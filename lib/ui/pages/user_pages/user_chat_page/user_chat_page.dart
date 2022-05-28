@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/constants/colors.dart';
-import 'package:new_project1/state/user_chat_controller.dart';
+import 'package:new_project1/state/user_controller/user_chat_controller.dart';
 import 'package:new_project1/ui/pages/user_pages/user_chats_page/user_chats_page.dart';
 
 class UserChatPage extends StatelessWidget {

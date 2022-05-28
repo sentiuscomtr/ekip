@@ -14,5 +14,6 @@ class BasePage<T> {
     totalPages = map["totalPages"];
     totalElements = map["totalElements"];
     size = map["size"];
+    content = map['content'];
   }
 }

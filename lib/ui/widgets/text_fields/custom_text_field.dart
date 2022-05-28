@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final labelText;
   final suffixIcon;
   final prefixIcon;
+  final obscureText;
 
   CustomTextField({
     required this.onChanged,
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     required this.labelText,
     this.suffixIcon,
     this.prefixIcon,
+    this.obscureText = false,
   });
 
   @override
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       controller: controller,
+      obscureText: obscureText,
       decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

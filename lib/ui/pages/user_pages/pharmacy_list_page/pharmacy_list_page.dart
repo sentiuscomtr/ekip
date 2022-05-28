@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project1/state/pharmacies_controller.dart';
+import 'package:new_project1/state/user_controller/pharmacies_controller.dart';
 
 class PharmacyListView extends StatelessWidget {
   PharmacyListView({Key? key}) : super(key: key);

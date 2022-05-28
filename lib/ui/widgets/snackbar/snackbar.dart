@@ -7,6 +7,7 @@ class CustomSnackbar {
         ? green.withOpacity(0.4)
         : red.withOpacity(0.4);
     Get.showSnackbar(GetSnackBar(
+      duration: const Duration(seconds: 2),
       title: title,
       message: message,
       backgroundColor: color,

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:new_project1/api/service/pharmacies_service.dart';
+import 'package:new_project1/api/service/user_services/pharmacies_service.dart';
 import 'package:new_project1/model/pharmacy_view_model.dart';
 
 class PharmaciesController extends GetxController {

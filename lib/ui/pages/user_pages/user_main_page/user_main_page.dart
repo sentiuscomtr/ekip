@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project1/ui/pages/user_pages/recycle_point_view/recycle_point_view.dart';
 import 'package:new_project1/ui/pages/user_pages/user_find_drug_store/user_find_drug_store.dart';
 import 'package:new_project1/ui/widgets/buttons/user_main_page_button.dart';
 
@@ -23,6 +24,20 @@ class UserMainPage extends StatelessWidget {
               children: [
                 _buildVerticalSpace(size.height),
                 UserMainPageButton(
+                    title: 'İlaç Bul',
+                    width: size.width * 0.7,
+                    height: size.height * 0.13,
+                    onPressed: () {}),
+                _buildVerticalSpace(size.height),
+                UserMainPageButton(
+                    title: 'Geri Dönüştür',
+                    width: size.width * 0.7,
+                    height: size.height * 0.13,
+                    onPressed: () {
+                      Get.to(() => RecyclePointView());
+                    }),
+                _buildVerticalSpace(size.height),
+                UserMainPageButton(
                     title: 'En Yakın Eczaneler',
                     width: size.width * 0.7,
                     height: size.height * 0.13,
@@ -30,17 +45,6 @@ class UserMainPage extends StatelessWidget {
                       Get.to(() => FindDrugStore());
                     }),
                 _buildVerticalSpace(size.height),
-                UserMainPageButton(
-                    title: 'Geri Dönüştür',
-                    width: size.width * 0.7,
-                    height: size.height * 0.13,
-                    onPressed: () {}),
-                _buildVerticalSpace(size.height),
-                UserMainPageButton(
-                    title: 'XXXXXX',
-                    width: size.width * 0.7,
-                    height: size.height * 0.13,
-                    onPressed: () {})
               ],
             )));
   }
