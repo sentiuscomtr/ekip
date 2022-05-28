@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:new_project1/state/pharmacies_controller.dart';
 import 'dart:developer';
 
 import 'package:permission_handler/permission_handler.dart';
@@ -19,6 +20,8 @@ class UserFindDrugStoreController extends GetxController {
 
   var isLoading = false.obs;
   var center = LatLng(0, 0).obs;
+  var isBottomSheetOpen = false.obs;
+  var onlyDuty = false.obs;
 
   @override
   void onInit() async {
@@ -77,5 +80,26 @@ class UserFindDrugStoreController extends GetxController {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
+  }
+
+  Future getDutyPharmacies() async {
+    log('DUTY PHARMACIES CALLED');
+  }
+
+  void openBottomSheet() {
+    isBottomSheetOpen(true);
+    update();
+  }
+
+  void changeOnlyDuty() {
+    onlyDuty(!onlyDuty.value);
+    update();
+
+    if (onlyDuty.value) {
+      getDutyPharmacies();
+    } else {
+      final controller = Get.find<PharmaciesController>();
+      controller.getPharmacies();
+    }
   }
 }

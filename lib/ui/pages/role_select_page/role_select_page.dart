@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project1/constants/colors.dart';
+import 'package:new_project1/ui/pages/login_page/user_login_page.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/themes/text_styles.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
@@ -30,7 +32,9 @@ class RoleSelectPage extends StatelessWidget {
                       size.width * 0.5, size.height * 0.06),
                   child: Text('Kullanıcı Girişi',
                       style: TextStyles.loginButtonText()),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => UserLoginPage());
+                  },
                 )
               ],
             )));
