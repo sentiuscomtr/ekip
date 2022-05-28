@@ -36,11 +36,12 @@ class KbbMedicineService {
     };
 
     final response = await http.post(uri, headers: headers, body: body);
+    log('$token');
     log(response.body);
 
     if (response.statusCode == 200) {
       log('WHAAAT');
-      if (response.body == 'SAVED') {
+      if (response.body == 'ADDED') {
         return ApiResponseStatus.SAVED;
       } else {
         log(response.body);

@@ -27,9 +27,9 @@ class DateTimeInputContainer extends StatelessWidget {
             padding: EdgeInsets.all(screenPix / 30),
             alignment: Alignment.centerLeft,
             height: screenHeight / 17,
-            width: screenWith / 1.2,
+            width: screenWith * 0.7,
             decoration: BoxDecoration(
-                color: Color(0xffF0F2F1),
+                color: const Color(0xffF0F2F1),
                 borderRadius: BorderRadius.circular(screenPix / 50)),
             child: Row(children: [
               Text(text,
