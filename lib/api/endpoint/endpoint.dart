@@ -6,4 +6,6 @@ class ApiEndpoint {
 
   //USER-CONTROLLER
   static const String userLogin = _baseUrl + '/auth/user/login';
+
+  static const String getPharmacies = _baseUrl + '/home/pharmacy';
 }

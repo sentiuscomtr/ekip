@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:new_project1/state/pharmacies_controller.dart';
 import 'package:new_project1/state/user_find_drug_store_controller.dart';
+import 'package:new_project1/ui/pages/user_pages/user_chat_page/user_chat_page.dart';
+import 'package:new_project1/ui/themes/elevated_button_theme.dart';
+import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
+import 'package:new_project1/utils/map_utils.dart';
 
 class FindDrugStore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late GoogleMapController mapController;
     final controller = Get.put(UserFindDrugStoreController());
-
-    final LatLng _center = const LatLng(45.521563, -122.677433);
-    //get users current location an assign it to a value named location
+    final pharmacyController = Get.put(PharmaciesController());
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -27,9 +30,74 @@ class FindDrugStore extends StatelessWidget {
                   width: size.width,
                   height: size.height,
                   child: Center(
-                      child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                              target: controller.center.value, zoom: 11.0))));
+                      child: Column(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: CheckboxListTile(
+                            onChanged: (_) => controller.changeOnlyDuty(),
+                            value: controller.onlyDuty.value,
+                            title: const Text('Sadece Nöbetçi Eczaneler'),
+                          )),
+                      Expanded(
+                        flex: 12,
+                        child: GoogleMap(
+                            markers: pharmacyController.pharmaciesList
+                                .map((element) {
+                              return Marker(
+                                  onTap: () => _showBottomSheet(size, element),
+                                  infoWindow: InfoWindow(
+                                      onTap: () async {
+                                        MapUtils.openMap(
+                                            element.lat, element.lang);
+                                      },
+                                      title: element.name,
+                                      snippet: 'Google Maps'),
+                                  position: LatLng(element.lat, element.lang),
+                                  markerId: MarkerId(
+                                    element.id.toString(),
+                                  ));
+                            }).toSet(),
+                            myLocationEnabled: true,
+                            initialCameraPosition: CameraPosition(
+                                target: controller.center.value, zoom: 15.0)),
+                      ),
+                    ],
+                  )));
         }));
+  }
+
+  _showBottomSheet(size, element) {
+    Get.bottomSheet(Container(
+        child: Column(
+          children: [
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+            Text(element.name,
+                style: const TextStyle(color: Colors.black, fontSize: 24)),
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+            CustomElevatedButton(
+              buttonStyle: ElevatedButtonThemes.amberStyle(),
+              child: const Text('Haritada Göster'),
+              onPressed: () async {
+                MapUtils.openMap(element.lat, element.lang);
+              },
+            ),
+            CustomElevatedButton(
+                buttonStyle: ElevatedButtonThemes.amberStyle(),
+                child: const Text('İletişim'),
+                onPressed: () => Get.to(() => UserChatPage())),
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+          ],
+        ),
+        width: size.width,
+        height: size.height * 0.3,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(20))));
   }
 }
