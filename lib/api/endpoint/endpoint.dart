@@ -8,4 +8,12 @@ class ApiEndpoint {
   static const String userLogin = _baseUrl + '/auth/user/login';
 
   static const String getPharmacies = _baseUrl + '/home/pharmacy';
+
+  static const String getDutyPharmacies = _baseUrl + '/home/pharmacy/duty';
+
+  static const String getChats = _baseUrl + '/user/chat';
+
+  static const String postMessage = _baseUrl + '/user/chat';
+
+  static const String getChatMessage = _baseUrl + '/user/chat/message/id';
 }
