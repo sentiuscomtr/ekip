@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:new_project1/api/model/request_model/kbb_models/kbb_login_request_model.dart';
 import 'package:new_project1/api/service/kbb_services/kbb_login_service.dart';
 import 'package:new_project1/constants/api_status_codes.dart';
-import 'package:new_project1/ui/pages/kbb_pages/kbb_main_page.dart';
+import 'package:new_project1/ui/pages/kbb_pages/kbb_medicines_view.dart';
 import 'package:new_project1/ui/widgets/snackbar/snackbar.dart';
 
 class KbbLoginController extends GetxController {
@@ -15,6 +15,7 @@ class KbbLoginController extends GetxController {
 
   @override
   onInit() {
+    log('ON INIT');
     super.onInit();
   }
 
@@ -29,7 +30,7 @@ class KbbLoginController extends GetxController {
     final response = await _loginService.login(requestModel: loginModel);
     if (response == LoginStatus.SUCCESSFULL) {
       log('OK');
-      Get.to(() => KbbMainPage());
+      Get.to(() => KbbMedicinesView());
     } else if (response == LoginStatus.FAILED) {
       CustomSnackbar.getSnackbar(
           'HATA', 'Bir hata meydana geldi', SnackbarType.ERROR);

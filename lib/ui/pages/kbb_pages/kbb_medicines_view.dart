@@ -5,7 +5,7 @@ import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
 import 'package:new_project1/ui/widgets/text_fields/custom_text_field.dart';
 
-class KbbMainPage extends StatelessWidget {
+class KbbMedicinesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(KbbMedicineController());
