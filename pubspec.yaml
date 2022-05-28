@@ -46,6 +46,9 @@ dependencies:
   permission_handler: ^9.2.0
   url_launcher: ^6.1.2
   stomp_dart_client: ^0.4.4
+  
+  #Storage
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:
