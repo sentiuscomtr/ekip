@@ -21,4 +21,11 @@ class ApiEndpoint {
 
   ///PHARMACY
   static const String pharmacyLogin = _baseUrl + '/auth/pharmacy/login';
+
+  ///KBB
+  static const String kbbLogin = _baseUrl + '/auth/kbb/login';
+  static const String saveMedicine = _baseUrl + '/kbb/medicine';
+
+  ///Search Med
+  static const String searchMed = _baseUrl + '/home/medicine';
 }

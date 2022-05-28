@@ -16,7 +16,8 @@ class UserMainPageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        child: Text(title),
+        child: Text(title,
+            style: const TextStyle(color: Colors.white, fontSize: 24)),
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             shape:

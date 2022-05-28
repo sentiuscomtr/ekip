@@ -23,12 +23,10 @@ class UserMainPage extends StatelessWidget {
               children: [
                 _buildVerticalSpace(size.height),
                 UserMainPageButton(
-                    title: 'En Yakın Eczaneler',
+                    title: 'İlaç Bul',
                     width: size.width * 0.7,
                     height: size.height * 0.13,
-                    onPressed: () {
-                      Get.to(() => FindDrugStore());
-                    }),
+                    onPressed: () {}),
                 _buildVerticalSpace(size.height),
                 UserMainPageButton(
                     title: 'Geri Dönüştür',
@@ -37,10 +35,13 @@ class UserMainPage extends StatelessWidget {
                     onPressed: () {}),
                 _buildVerticalSpace(size.height),
                 UserMainPageButton(
-                    title: 'XXXXXX',
+                    title: 'En Yakın Eczaneler',
                     width: size.width * 0.7,
                     height: size.height * 0.13,
-                    onPressed: () {})
+                    onPressed: () {
+                      Get.to(() => FindDrugStore());
+                    }),
+                _buildVerticalSpace(size.height),
               ],
             )));
   }

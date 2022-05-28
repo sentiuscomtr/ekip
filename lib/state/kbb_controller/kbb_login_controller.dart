@@ -2,16 +2,16 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project1/api/model/request_model/pharmacy_models/pharmacy_login_request_model.dart';
-import 'package:new_project1/api/service/pharmacy_services/pharmacy_login_service.dart';
+import 'package:new_project1/api/model/request_model/kbb_models/kbb_login_request_model.dart';
+import 'package:new_project1/api/service/kbb_services/kbb_login_service.dart';
 import 'package:new_project1/constants/api_status_codes.dart';
-import 'package:new_project1/ui/pages/pharmacy_pages/pharmacy_main_page.dart';
+import 'package:new_project1/ui/pages/kbb_pages/kbb_main_page.dart';
 import 'package:new_project1/ui/widgets/snackbar/snackbar.dart';
 
-class PharmacyLoginController extends GetxController {
+class KbbLoginController extends GetxController {
   TextEditingController usernameTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-  final PharmacyLoginService _loginService = PharmacyLoginService();
+  final KBBLoginService _loginService = KBBLoginService();
 
   @override
   onInit() {
@@ -23,13 +23,13 @@ class PharmacyLoginController extends GetxController {
   var isFormValid = false.obs;
 
   Future login() async {
-    final loginModel = PharmacyLoginRequestModel(
+    final loginModel = KbbLoginRequestModel(
         username: usernameTextController.text,
         password: passwordTextController.text);
     final response = await _loginService.login(requestModel: loginModel);
     if (response == LoginStatus.SUCCESSFULL) {
       log('OK');
-      Get.to(() => PharmacyMainPage());
+      Get.to(() => KbbMainPage());
     } else if (response == LoginStatus.FAILED) {
       CustomSnackbar.getSnackbar(
           'HATA', 'Bir hata meydana geldi', SnackbarType.ERROR);
@@ -38,7 +38,7 @@ class PharmacyLoginController extends GetxController {
 
   void userNameValidator() {
     if (usernameTextController.text.isNum &&
-        usernameTextController.text.length == 8) {
+        usernameTextController.text.length == 6) {
       isUsernameValid(true);
       update();
     } else {
@@ -57,10 +57,10 @@ class PharmacyLoginController extends GetxController {
 
   //CALLED IN PASSWORD TEXT FIELDS ON CHANGED METHOD
   void passwordValidator() {
-    if (passwordTextController.text.length < 6) {
+    if (passwordTextController.text.length < 5) {
       isPasswordValid(false);
       update();
-    } else if (passwordTextController.text.length == 6) {
+    } else if (passwordTextController.text.length == 5) {
       isPasswordValid(true);
       update();
     }

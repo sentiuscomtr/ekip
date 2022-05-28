@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/constants/colors.dart';
-import 'package:new_project1/state/pharmacy_controller/pharmacy_login_contoller.dart';
+import 'package:new_project1/state/kbb_controller/kbb_login_controller.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
 import 'package:new_project1/ui/widgets/text_fields/custom_text_field.dart';
 
-class PharmacyLoginPage extends StatelessWidget {
-  final controller = Get.put(PharmacyLoginController());
-
-  PharmacyLoginPage({Key? key}) : super(key: key);
-
+class KbbLoginPage extends StatelessWidget {
+  final controller = Get.put(KbbLoginController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Container(
         width: size.width,
