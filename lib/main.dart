@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'Eczanem',
       locale: Locale('tr', 'TR'),
       supportedLocales: [Locale('tr', 'TR')],
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: RecyclePointView(),
+      home: RoleSelectPage(),
     );
   }
 }
