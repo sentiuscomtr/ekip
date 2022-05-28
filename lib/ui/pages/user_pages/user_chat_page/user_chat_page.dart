@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/constants/colors.dart';
 import 'package:new_project1/state/user_chat_controller.dart';
+import 'package:new_project1/ui/pages/user_pages/user_chats_page/user_chats_page.dart';
 
 class UserChatPage extends StatelessWidget {
+  UserChatPage({Key? key}) : super(key: key);
   final controller = Get.put(UserChatController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.chat),
+            onPressed: () => Get.to(() => UserChatsPage()),
+          )
+        ],
         backgroundColor: Colors.white,
         title: const Text('İletişim'),
         centerTitle: true,

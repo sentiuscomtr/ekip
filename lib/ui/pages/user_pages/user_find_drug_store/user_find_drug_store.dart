@@ -6,11 +6,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:new_project1/state/pharmacies_controller.dart';
 import 'package:new_project1/state/user_find_drug_store_controller.dart';
 import 'package:new_project1/ui/pages/user_pages/user_chat_page/user_chat_page.dart';
+import 'package:new_project1/ui/pages/user_pages/user_chats_page/user_chats_page.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
 import 'package:new_project1/utils/map_utils.dart';
 
 class FindDrugStore extends StatelessWidget {
+  FindDrugStore({Key? key}) : super(key: key);
   final controller = Get.put(UserFindDrugStoreController());
   final pharmacyController = Get.put(PharmaciesController());
 
@@ -21,6 +23,12 @@ class FindDrugStore extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.chat, color: Colors.black),
+              onPressed: () => Get.to(() => UserChatsPage()),
+            )
+          ],
           backgroundColor: Colors.white,
           title:
               const Text('Eczane Bul', style: TextStyle(color: Colors.black)),
@@ -104,9 +112,7 @@ class FindDrugStore extends StatelessWidget {
   }
 
   _buildMarkers(size) {
-    log('BUILD MARKES CALLED');
     if (controller.onlyDuty.value) {
-      log('ENTERED IF ');
       return pharmacyController.dutyPharmacies.map((element) {
         return Marker(
             onTap: () => _showBottomSheet(size, element),
@@ -122,9 +128,7 @@ class FindDrugStore extends StatelessWidget {
             ));
       }).toSet();
     } else {
-      log('ENTERED ELSE');
       return pharmacyController.pharmaciesList.map((element) {
-        log(element.name);
         return Marker(
             onTap: () => _showBottomSheet(size, element),
             infoWindow: InfoWindow(
