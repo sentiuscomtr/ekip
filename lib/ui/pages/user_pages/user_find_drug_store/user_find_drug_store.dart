@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,11 +11,12 @@ import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
 import 'package:new_project1/utils/map_utils.dart';
 
 class FindDrugStore extends StatelessWidget {
+  final controller = Get.put(UserFindDrugStoreController());
+  final pharmacyController = Get.put(PharmaciesController());
+
   @override
   Widget build(BuildContext context) {
     late GoogleMapController mapController;
-    final controller = Get.put(UserFindDrugStoreController());
-    final pharmacyController = Get.put(PharmaciesController());
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -26,44 +29,43 @@ class FindDrugStore extends StatelessWidget {
         body: Obx(() {
           return controller.isLoading.value
               ? const Center(child: CircularProgressIndicator())
-              : SizedBox(
-                  width: size.width,
-                  height: size.height,
-                  child: Center(
-                      child: Column(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: CheckboxListTile(
-                            onChanged: (_) => controller.changeOnlyDuty(),
-                            value: controller.onlyDuty.value,
-                            title: const Text('Sadece Nöbetçi Eczaneler'),
-                          )),
-                      Expanded(
-                        flex: 12,
-                        child: GoogleMap(
-                            markers: pharmacyController.pharmaciesList
-                                .map((element) {
-                              return Marker(
-                                  onTap: () => _showBottomSheet(size, element),
-                                  infoWindow: InfoWindow(
-                                      onTap: () async {
-                                        MapUtils.openMap(
-                                            element.lat, element.lang);
-                                      },
-                                      title: element.name,
-                                      snippet: 'Google Maps'),
-                                  position: LatLng(element.lat, element.lang),
-                                  markerId: MarkerId(
-                                    element.id.toString(),
-                                  ));
-                            }).toSet(),
-                            myLocationEnabled: true,
-                            initialCameraPosition: CameraPosition(
-                                target: controller.center.value, zoom: 15.0)),
-                      ),
-                    ],
-                  )));
+              : pharmacyController.isLoading.value
+                  ? const Center(child: CircularProgressIndicator())
+                  : SizedBox(
+                      width: size.width,
+                      height: size.height,
+                      child: Center(
+                          child: Stack(
+                        children: [
+                          Obx(() {
+                            return GoogleMap(
+                                markers: _buildMarkers(size),
+                                myLocationEnabled: true,
+                                initialCameraPosition: CameraPosition(
+                                    target: controller.center.value,
+                                    zoom: 15.0));
+                          }),
+                          Positioned(
+                            top: 8,
+                            left: 8,
+                            child: Container(
+                              width: size.width / 1.4,
+                              height: size.height * 0.07,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all()),
+                              child: Center(
+                                child: CheckboxListTile(
+                                  onChanged: (_) => controller.changeOnlyDuty(),
+                                  value: controller.onlyDuty.value,
+                                  title: const Text('Sadece Nöbetçi Eczaneler'),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )));
         }));
   }
 
@@ -99,5 +101,43 @@ class FindDrugStore extends StatelessWidget {
         height: size.height * 0.3,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20))));
+  }
+
+  _buildMarkers(size) {
+    log('BUILD MARKES CALLED');
+    if (controller.onlyDuty.value) {
+      log('ENTERED IF ');
+      return pharmacyController.dutyPharmacies.map((element) {
+        return Marker(
+            onTap: () => _showBottomSheet(size, element),
+            infoWindow: InfoWindow(
+                onTap: () async {
+                  MapUtils.openMap(element.lat, element.lang);
+                },
+                title: element.name,
+                snippet: 'Google Maps'),
+            position: LatLng(element.lat, element.lang),
+            markerId: MarkerId(
+              element.id.toString(),
+            ));
+      }).toSet();
+    } else {
+      log('ENTERED ELSE');
+      return pharmacyController.pharmaciesList.map((element) {
+        log(element.name);
+        return Marker(
+            onTap: () => _showBottomSheet(size, element),
+            infoWindow: InfoWindow(
+                onTap: () async {
+                  MapUtils.openMap(element.lat, element.lang);
+                },
+                title: element.name,
+                snippet: 'Google Maps'),
+            position: LatLng(element.lat, element.lang),
+            markerId: MarkerId(
+              element.id.toString(),
+            ));
+      }).toSet();
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/ui/pages/user_pages/user_chat_page/user_chat_page.dart';
+import 'package:new_project1/ui/pages/user_pages/user_find_drug_store/user_find_drug_store.dart';
 
 void main() => runApp(const MyApp());
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: UserChatPage(),
+      home: FindDrugStore(),
     );
   }
 }

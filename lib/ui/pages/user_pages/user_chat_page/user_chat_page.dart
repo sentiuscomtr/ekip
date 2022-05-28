@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_project1/constants/colors.dart';
+import 'package:new_project1/state/user_chat_controller.dart';
 
 class UserChatPage extends StatelessWidget {
+  final controller = Get.put(UserChatController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,31 +25,32 @@ class UserChatPage extends StatelessWidget {
           Expanded(
               flex: 15,
               child: Container(
+                  color: grey,
                   child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  if (index % 2 == 0) {
-                    return Padding(
-                        child: _buildMyMessageBox(),
-                        padding: EdgeInsets.only(
-                          left: size.width * 0.1,
-                          right: 8,
-                          bottom: 4,
-                          top: 2,
-                        ));
-                  } else {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                        right: size.width * 0.1,
-                        left: 8,
-                        bottom: 4,
-                        top: 2,
-                      ),
-                      child: _buildOtherMessageBox(),
-                    );
-                  }
-                },
-              )))
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      if (index % 2 == 0) {
+                        return Padding(
+                            child: _buildMyMessageBox(),
+                            padding: EdgeInsets.only(
+                              left: size.width * 0.1,
+                              right: 8,
+                              bottom: 4,
+                              top: 2,
+                            ));
+                      } else {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            right: size.width * 0.1,
+                            left: 8,
+                            bottom: 4,
+                            top: 2,
+                          ),
+                          child: _buildOtherMessageBox(),
+                        );
+                      }
+                    },
+                  )))
         ],
       ),
     );

@@ -22,6 +22,7 @@ class UserFindDrugStoreController extends GetxController {
   var center = LatLng(0, 0).obs;
   var isBottomSheetOpen = false.obs;
   var onlyDuty = false.obs;
+  final pharmaciesController = Get.put(PharmaciesController());
 
   @override
   void onInit() async {
@@ -82,10 +83,6 @@ class UserFindDrugStoreController extends GetxController {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future getDutyPharmacies() async {
-    log('DUTY PHARMACIES CALLED');
-  }
-
   void openBottomSheet() {
     isBottomSheetOpen(true);
     update();
@@ -96,10 +93,9 @@ class UserFindDrugStoreController extends GetxController {
     update();
 
     if (onlyDuty.value) {
-      getDutyPharmacies();
+      pharmaciesController.getDutyPharmacies();
     } else {
-      final controller = Get.find<PharmaciesController>();
-      controller.getPharmacies();
+      pharmaciesController.getPharmacies();
     }
   }
 }
