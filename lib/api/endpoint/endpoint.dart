@@ -18,6 +18,7 @@ class ApiEndpoint {
   static const String postMessage = _baseUrl + '/user/chat';
 
   static const String getChatMessage = _baseUrl + '/user/chat/message/id';
+  static const String getRecyclePoints = _baseUrl + '/home/komek';
 
   ///PHARMACY
   static const String pharmacyLogin = _baseUrl + '/auth/pharmacy/login';

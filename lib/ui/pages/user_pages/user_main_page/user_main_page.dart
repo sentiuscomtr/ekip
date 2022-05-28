@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project1/ui/pages/user_pages/recycle_point_view/recycle_point_view.dart';
 import 'package:new_project1/ui/pages/user_pages/user_find_drug_store/user_find_drug_store.dart';
 import 'package:new_project1/ui/widgets/buttons/user_main_page_button.dart';
 
@@ -32,7 +33,9 @@ class UserMainPage extends StatelessWidget {
                     title: 'Geri Dönüştür',
                     width: size.width * 0.7,
                     height: size.height * 0.13,
-                    onPressed: () {}),
+                    onPressed: () {
+                      Get.to(() => RecyclePointView());
+                    }),
                 _buildVerticalSpace(size.height),
                 UserMainPageButton(
                     title: 'En Yakın Eczaneler',

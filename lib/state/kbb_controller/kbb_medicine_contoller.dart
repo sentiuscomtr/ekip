@@ -8,7 +8,7 @@ import 'package:new_project1/api/model/request_model/kbb_models/save_recycle_req
 import 'package:new_project1/api/model/request_model/search_med_req_model.dart';
 import 'package:new_project1/api/model/response_model/medicine_response_model.dart';
 import 'package:new_project1/api/service/kbb_services/kbb_medicine_service.dart';
-import 'package:new_project1/api/service/user_services/find_medicine_service.dart';
+import 'package:new_project1/api/service/kbb_services/kbb_search_med_service.dart';
 import 'package:new_project1/ui/widgets/snackbar/snackbar.dart';
 
 class KbbMedicineController extends GetxController {
