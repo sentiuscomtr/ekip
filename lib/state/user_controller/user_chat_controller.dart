@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project1/api/model/request_model/message_model.dart';
-import 'package:new_project1/api/service/chat_service.dart';
-import 'package:new_project1/api/service/socket_trial.dart';
+import 'package:new_project1/api/model/request_model/user_message_model.dart';
+import 'package:new_project1/api/service/user_services/chat_service.dart';
+import 'package:new_project1/api/service/user_services/socket_trial.dart';
 
 class UserChatController extends GetxController {
   ChatService _chatService = ChatService();

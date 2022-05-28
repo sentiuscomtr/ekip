@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/constants/colors.dart';
-import 'package:new_project1/state/user_login_controller.dart';
+import 'package:new_project1/state/user_controller/user_login_controller.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
 import 'package:new_project1/ui/widgets/text_fields/custom_text_field.dart';

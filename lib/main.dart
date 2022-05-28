@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:new_project1/api/service/socket_trial.dart';
-import 'package:new_project1/ui/pages/user_pages/user_chat_page/user_chat_page.dart';
+import 'package:new_project1/ui/pages/role_select_page/role_select_page.dart';
 import 'package:new_project1/ui/pages/user_pages/user_find_drug_store/user_find_drug_store.dart';
 
 void main() => runApp(const MyApp());
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: FindDrugStore(),
+      home: RoleSelectPage(),
     );
   }
 }
