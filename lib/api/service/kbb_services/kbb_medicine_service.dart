@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:new_project1/api/endpoint/endpoint.dart';
 import 'package:new_project1/api/model/request_model/kbb_models/save_medicine_request_model.dart';
 import 'package:http/http.dart' as http;
@@ -26,16 +27,23 @@ class KbbMedicineService {
 
   Future saveRecycle({required SaveRecycleReqModel model}) async {
     final uri = Uri.parse(ApiEndpoint.saveRecycle);
-
+    log(model.toString());
     final body = json.encode(model.toJson());
-    final headers = {'content-type': 'application/json'};
+    final token = GetStorage().read('kbb_token');
+    final headers = {
+      'content-type': 'application/json',
+      'Authorization': 'Bearer KBB/$token'
+    };
 
     final response = await http.post(uri, headers: headers, body: body);
+    log(response.body);
+
     if (response.statusCode == 200) {
       log('WHAAAT');
       if (response.body == 'SAVED') {
         return ApiResponseStatus.SAVED;
       } else {
+        log(response.body);
         return ApiResponseStatus.FAIL;
       }
     }

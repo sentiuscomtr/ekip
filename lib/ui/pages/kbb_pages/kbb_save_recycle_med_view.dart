@@ -4,6 +4,7 @@ import 'package:new_project1/api/model/request_model/kbb_models/save_recycle_req
 import 'package:new_project1/state/kbb_controller/kbb_medicine_contoller.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
+import 'package:new_project1/ui/widgets/date_picker/date_picker_dialog.dart';
 import 'package:new_project1/ui/widgets/text_fields/custom_text_field.dart';
 
 class KbbSaveRecycleMedView extends StatelessWidget {
@@ -13,7 +14,8 @@ class KbbSaveRecycleMedView extends StatelessWidget {
     final controller = Get.put(KbbMedicineController());
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Geri Dönüştürülecek İlaç Ekle'),
+          title: const Text('Geri Dönüştürülecek İlaç Ekle',
+              style: TextStyle(color: Colors.black)),
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
@@ -30,11 +32,16 @@ class KbbSaveRecycleMedView extends StatelessWidget {
               hintText: 'Adet',
               labelText: 'Adet',
             ),
-            CustomTextField(
-                onChanged: (val) {},
-                controller: controller.skt,
-                hintText: 'Son Kullanım Tarihi',
-                labelText: 'Son Kullanım Tarihi'),
+            Obx(() {
+              return DateTimeInputContainer(
+                  renderContext: context,
+                  text: controller.sktStr.value == ''
+                      ? 'Son Kullanma Tarihi'
+                      : controller.sktStr.value,
+                  changed: (DateTime dt) {
+                    controller.listenerDateTime(dt);
+                  });
+            }),
             Obx(() {
               return DropdownButton<RecycleType>(
                   value: controller.selectedType.value,

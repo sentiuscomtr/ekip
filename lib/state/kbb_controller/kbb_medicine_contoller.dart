@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:new_project1/api/model/request_model/kbb_models/save_medicine_request_model.dart';
 import 'package:new_project1/api/model/request_model/kbb_models/save_recycle_req_model.dart';
 import 'package:new_project1/api/model/request_model/search_med_req_model.dart';
@@ -20,10 +21,23 @@ class KbbMedicineController extends GetxController {
   TextEditingController medicineNameTextController = TextEditingController();
   TextEditingController medicineSizeTextController = TextEditingController();
 
+  DateTime skt = DateTime.now();
+  var sktStr = ''.obs;
+
   @override
   void onInit() {
     log('ASD');
     super.onInit();
+  }
+
+  listenerDateTime(DateTime dt) {
+    skt = dt;
+    sktStr.value = '' +
+        dt.day.toString() +
+        '/' +
+        dt.month.toString() +
+        '/' +
+        dt.year.toString();
   }
 
   Future searchMedicine() async {
@@ -56,14 +70,13 @@ class KbbMedicineController extends GetxController {
 
   TextEditingController medicineId = TextEditingController();
   TextEditingController number = TextEditingController();
-  TextEditingController skt = TextEditingController();
   var selectedType = RecycleType.CONSUME.obs;
 
   Future saveRecycle() async {
     final reqModel = SaveRecycleReqModel(
         medicineId: int.parse(medicineId.text),
         number: int.parse(number.text),
-        skt: DateTime.now(),
+        skt: skt,
         type: selectedType.value);
 
     final response = await _medService.saveRecycle(model: reqModel);

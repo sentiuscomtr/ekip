@@ -4,7 +4,8 @@ import 'package:new_project1/constants/colors.dart';
 class ElevatedButtonThemes {
   static ButtonStyle greenStyle(double width, double height, bool enabled) {
     return ElevatedButton.styleFrom(
-        primary: enabled ? green : grey,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        primary: enabled ? redButton : grey,
         minimumSize: Size(width, height),
         maximumSize: Size(width + 1, height + 1));
   }

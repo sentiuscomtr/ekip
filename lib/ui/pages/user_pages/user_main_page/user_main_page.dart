@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project1/ui/pages/user_pages/find_medicine_page/find_medicine_page.dart';
 import 'package:new_project1/ui/pages/user_pages/recycle_point_view/recycle_point_view.dart';
-import 'package:new_project1/ui/pages/user_pages/user_find_drug_store/user_find_drug_store.dart';
-import 'package:new_project1/ui/widgets/buttons/user_main_page_button.dart';
 
 class UserMainPage extends StatelessWidget {
   UserMainPage({Key? key}) : super(key: key);
@@ -23,27 +22,15 @@ class UserMainPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 _buildVerticalSpace(size.height),
-                UserMainPageButton(
-                    title: 'İlaç Bul',
-                    width: size.width * 0.7,
-                    height: size.height * 0.13,
-                    onPressed: () {}),
+                InkWell(
+                    onTap: () => Get.to(() => FindMedicinePage()),
+                    child: Image.asset('assets/icons/find_med_button.png',
+                        width: size.width * 0.8)),
                 _buildVerticalSpace(size.height),
-                UserMainPageButton(
-                    title: 'Geri Dönüştür',
-                    width: size.width * 0.7,
-                    height: size.height * 0.13,
-                    onPressed: () {
-                      Get.to(() => RecyclePointView());
-                    }),
-                _buildVerticalSpace(size.height),
-                UserMainPageButton(
-                    title: 'En Yakın Eczaneler',
-                    width: size.width * 0.7,
-                    height: size.height * 0.13,
-                    onPressed: () {
-                      Get.to(() => FindDrugStore());
-                    }),
+                InkWell(
+                    onTap: () => Get.to(() => RecyclePointView()),
+                    child: Image.asset('assets/icons/recycle_button.png',
+                        width: size.width * 0.8)),
                 _buildVerticalSpace(size.height),
               ],
             )));

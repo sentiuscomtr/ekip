@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/state/kbb_controller/kbb_medicine_contoller.dart';
+import 'package:new_project1/ui/pages/kbb_pages/kbb_save_recycle_med_view.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
 import 'package:new_project1/ui/widgets/text_fields/custom_text_field.dart';
@@ -44,6 +45,15 @@ class KbbMedicinesView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var item = controller.medicineList[index];
                         return ListTile(
+                          trailing: IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: () {
+                                final medController =
+                                    Get.put(KbbMedicineController());
+                                medController.medicineId.text =
+                                    item.id.toString();
+                                Get.to(() => KbbSaveRecycleMedView());
+                              }),
                           title: Text(item.name),
                           subtitle: Text(item.size.toString()),
                         );
