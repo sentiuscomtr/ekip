@@ -60,7 +60,7 @@ class KbbSaveRecycleMedView extends StatelessWidget {
                     value: controller.selectedType.value,
                     items: RecycleType.values
                         .map((e) => DropdownMenuItem<RecycleType>(
-                            value: e, child: Text(e.name)))
+                            value: e, child: Text(_buildTrMedSit(e.name))))
                         .toList(),
                     onChanged: (e) => controller.selectRecycleType(e!));
               }),
@@ -77,5 +77,16 @@ class KbbSaveRecycleMedView extends StatelessWidget {
 
   _buildVerticalSpace(size) {
     return SizedBox(height: size.height * 0.03);
+  }
+
+  _buildTrMedSit(String sit) {
+    switch (sit) {
+      case 'CONSUME':
+        return 'Kullanılabilir';
+      case 'NOT_CONSUME':
+        return 'Kullanılamaz';
+      default:
+        return '';
+    }
   }
 }

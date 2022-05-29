@@ -34,8 +34,9 @@ class UserFindDrugStoreController extends GetxController {
 
     position.value = await _determinePosition();
     center.value = LatLng(position.value.latitude, position.value.longitude);
-    print(center.value.latitude);
-    print(center.value.longitude);
+    log(center.value.longitude.toString());
+    log(center.value.latitude.toString());
+
     isLoading(false);
     update();
 
