@@ -6,7 +6,7 @@ class MedDetailsResponseModel {
   late double lang;
 
   MedDetailsResponseModel({required Map<String, dynamic> map}) {
-    id = map['id'];
+    id = map['komekId'] ?? 0;
     komekName = map['komekName'];
     number = map['number'];
     lat = map['lat'];

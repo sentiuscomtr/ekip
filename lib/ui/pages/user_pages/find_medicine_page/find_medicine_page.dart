@@ -50,7 +50,7 @@ class FindMedicinePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var item = _searchController.searchResult[index];
                         return ListTile(
-                          onTap: () => Get.to(() => MedDetailsPage()),
+                          onTap: () => Get.to(() => MedDetailsPage(item: item)),
                           tileColor: someKindOfGrey,
                           title: Text(item.name),
                           subtitle: Text(item.size.toString() + 'mg'),
