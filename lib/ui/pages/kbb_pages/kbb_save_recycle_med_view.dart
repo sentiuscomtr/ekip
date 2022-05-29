@@ -14,10 +14,12 @@ class KbbSaveRecycleMedView extends StatelessWidget {
     final controller = Get.put(KbbMedicineController());
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Geri Dönüştürülecek İlaç Ekle',
-              style: TextStyle(color: Colors.black)),
-          centerTitle: true,
           backgroundColor: Colors.white,
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
+          centerTitle: true,
         ),
         body: Center(
           child: Column(
@@ -58,7 +60,7 @@ class KbbSaveRecycleMedView extends StatelessWidget {
                     value: controller.selectedType.value,
                     items: RecycleType.values
                         .map((e) => DropdownMenuItem<RecycleType>(
-                            value: e, child: Text(e.name)))
+                            value: e, child: Text(_buildTrMedSit(e.name))))
                         .toList(),
                     onChanged: (e) => controller.selectRecycleType(e!));
               }),
@@ -75,5 +77,16 @@ class KbbSaveRecycleMedView extends StatelessWidget {
 
   _buildVerticalSpace(size) {
     return SizedBox(height: size.height * 0.03);
+  }
+
+  _buildTrMedSit(String sit) {
+    switch (sit) {
+      case 'CONSUME':
+        return 'Kullanılabilir';
+      case 'NOT_CONSUME':
+        return 'Kullanılamaz';
+      default:
+        return '';
+    }
   }
 }

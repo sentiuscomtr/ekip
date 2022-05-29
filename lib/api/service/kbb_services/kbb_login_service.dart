@@ -15,7 +15,8 @@ class KBBLoginService {
 
     final response = await http.post(uri, body: body, headers: headers);
     if (response.statusCode == 200) {
-      GetStorage().write('kbb_token', json.decode(response.body)['token']);
+      var token = json.decode(response.body)['token'];
+      await GetStorage().write('kbb_token', token);
 
       return LoginStatus.SUCCESSFULL;
     } else {

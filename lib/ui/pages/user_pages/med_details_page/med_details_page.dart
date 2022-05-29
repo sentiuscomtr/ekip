@@ -19,63 +19,85 @@ class MedDetailsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
+          centerTitle: true,
         ),
         body: Obx(() => controller.isLoading.value
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
-                  ListTile(
-                    title: Text(item.name,
-                        style: const TextStyle(
-                          fontSize: 24,
-                        )),
-                    subtitle: Text(item.size.toString() + 'mg',
-                        style: const TextStyle(fontSize: 20)),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Card(
+                        child: ListTile(
+                          title: Text(item.name,
+                              style: const TextStyle(
+                                fontSize: 24,
+                              )),
+                          subtitle: Text(item.size.toString() + 'mg',
+                              style: const TextStyle(fontSize: 20)),
+                        ),
+                      ),
+                    ),
                   ),
-                  SizedBox(
-                    height: size.height * 0.6,
-                    child: ListView.builder(
-                        itemCount: controller.medDetails.length,
-                        itemBuilder: (context, index) {
-                          var element = controller.medDetails[index];
-                          return ListTile(
-                            trailing: CustomElevatedButton(
-                                buttonStyle: ElevatedButton.styleFrom(
-                                    primary: buttonBlue),
-                                child: const Text('Yol tarifi al'),
-                                onPressed: () => Get.to(
-                                    () => DrugStoreRoadPage(item: element))),
-                            title: Text(element.komekName.toString(),
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.black)),
-                            subtitle:
-                                Text('Adet: ' + element.number.toString()),
-                          );
-                        }),
+                  Expanded(
+                    flex: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Obx(() => controller.medDetails.isEmpty
+                          ? _buildInfo(size)
+                          : _buildList(controller)),
+                    ),
                   ),
                 ],
               )));
   }
+
+  Widget _buildInfo(size) {
+    return SizedBox(
+      child: Container(
+        height: size.height * 0.3,
+        width: size.width * 1,
+        decoration: BoxDecoration(
+            color: textFieldBackground,
+            borderRadius: BorderRadius.circular(10)),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.2),
+        child: Column(
+          children: [
+            SizedBox(height: size.height * 0.03),
+            const Text(
+                'Aradığınız ilaç, geri dönüşüm merkezlerimizde şuan için temin edilemiyor'),
+            TextButton(
+              child: const Text('En Yakın Eczaneler'),
+              onPressed: () => Get.to(() => FindDrugStore()),
+            ),
+            const Text('Geçmiş Olsun')
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildList(controller) {
+    return ListView.builder(
+        itemCount: controller.medDetails.length,
+        itemBuilder: (context, index) {
+          var element = controller.medDetails[index];
+          return ListTile(
+            trailing: CustomElevatedButton(
+                buttonStyle: ElevatedButton.styleFrom(primary: buttonBlue),
+                child: const Text('Yol tarifi al'),
+                onPressed: () =>
+                    Get.to(() => DrugStoreRoadPage(item: element))),
+            title: Text(element.komekName.toString(),
+                style: const TextStyle(fontSize: 16, color: Colors.black)),
+            subtitle: Text('Adet: ' + element.number.toString()),
+          );
+        });
+  }
 }
-
-
-/*
-
-
-
- Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Text('Adet 50', style: TextStyle(fontSize: 20)),
-                      SizedBox(width: size.width * 0.2),
-                      CustomElevatedButton(
-                          buttonStyle:
-                              ElevatedButton.styleFrom(primary: buttonBlue),
-                          child: const Text('Yol tarifi al'),
-                          onPressed: () => Get.to(() => FindDrugStore()))
-                    ],
-                  ),
-                  Divider(),
-
-
-                  */

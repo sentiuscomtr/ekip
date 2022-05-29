@@ -29,7 +29,8 @@ class KbbMedicineService {
     final uri = Uri.parse(ApiEndpoint.saveRecycle);
     log(model.toString());
     final body = json.encode(model.toJson());
-    final token = GetStorage().read('kbb_token');
+    final token = await GetStorage().read('kbb_token');
+    log(token.toString());
     final headers = {
       'content-type': 'application/json',
       'Authorization': 'Bearer KBB/$token'

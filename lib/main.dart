@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:new_project1/api/service/user_services/med_details_service.dart';
-import 'package:new_project1/ui/pages/user_pages/find_medicine_page/find_medicine_page.dart';
+import 'package:new_project1/ui/pages/role_select_page/role_select_page.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  await GetStorage.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -12,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MedDetailsService().getMedDetails(7);
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'Ekip',
       locale: Locale('tr', 'TR'),
       supportedLocales: [Locale('tr', 'TR')],
@@ -22,7 +26,10 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      home: FindMedicinePage(),
+      home: RoleSelectPage(),
     );
   }
 }
+
+//TODO stokta var olmayan ilaçlar için FİGMA
+

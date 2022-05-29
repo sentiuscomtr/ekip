@@ -27,6 +27,7 @@ class KbbMedicineController extends GetxController {
   @override
   void onInit() {
     log('ASD');
+    searchMedicine();
     super.onInit();
   }
 
