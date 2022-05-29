@@ -19,13 +19,19 @@ class KbbMedicinesView extends StatelessWidget {
         ),
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text('İlaç Ekle', style: TextStyle(color: Colors.black)),
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
           centerTitle: true,
         ),
         body: Column(
           children: [
+            SizedBox(
+              height: size.height * 0.03,
+            ),
             Expanded(
-                flex: 1,
+                flex: 3,
                 child: SizedBox(
                   width: size.width * 0.6,
                   child: CustomTextField(

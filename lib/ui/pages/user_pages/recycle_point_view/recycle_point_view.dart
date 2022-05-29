@@ -11,10 +11,12 @@ class RecyclePointView extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Geriş Dönüşüm Noktaları',
-              style: TextStyle(color: Colors.black)),
-          centerTitle: true,
           backgroundColor: Colors.white,
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
+          centerTitle: true,
         ),
         body: Obx(
           () => !controller.isLoading.value

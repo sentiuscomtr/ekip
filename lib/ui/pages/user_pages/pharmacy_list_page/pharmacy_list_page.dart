@@ -7,9 +7,15 @@ class PharmacyListView extends StatelessWidget {
   final controller = Get.put(PharmaciesController());
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Eczaneler'),
+        backgroundColor: Colors.white,
+        title: Image.asset(
+          'assets/icons/ekip_short.png',
+          width: size.width * 0.2,
+        ),
+        centerTitle: true,
       ),
       body: Obx(
         () => controller.isLoading.value

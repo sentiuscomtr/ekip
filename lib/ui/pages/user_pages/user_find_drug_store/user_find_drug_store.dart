@@ -23,15 +23,11 @@ class FindDrugStore extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.chat, color: Colors.black),
-              onPressed: () => Get.to(() => UserChatsPage()),
-            )
-          ],
           backgroundColor: Colors.white,
-          title:
-              const Text('Eczane Bul', style: TextStyle(color: Colors.black)),
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
           centerTitle: true,
         ),
         body: Obx(() {

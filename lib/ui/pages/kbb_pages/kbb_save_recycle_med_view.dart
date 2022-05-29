@@ -14,10 +14,12 @@ class KbbSaveRecycleMedView extends StatelessWidget {
     final controller = Get.put(KbbMedicineController());
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Geri Dönüştürülecek İlaç Ekle',
-              style: TextStyle(color: Colors.black)),
-          centerTitle: true,
           backgroundColor: Colors.white,
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
+          centerTitle: true,
         ),
         body: Center(
           child: Column(

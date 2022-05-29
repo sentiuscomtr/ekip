@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project1/ui/pages/user_pages/find_medicine_page/find_medicine_page.dart';
+import 'package:new_project1/ui/pages/user_pages/recycle_info_page/recycle_info.dart';
 import 'package:new_project1/ui/pages/user_pages/recycle_point_view/recycle_point_view.dart';
 
 class UserMainPage extends StatelessWidget {
@@ -10,9 +11,11 @@ class UserMainPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          elevation: 1,
           backgroundColor: Colors.white,
-          title: const Text('Eczanem', style: TextStyle(color: Colors.black)),
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
           centerTitle: true,
         ),
         body: Container(
@@ -28,7 +31,7 @@ class UserMainPage extends StatelessWidget {
                         width: size.width * 0.8)),
                 _buildVerticalSpace(size.height),
                 InkWell(
-                    onTap: () => Get.to(() => RecyclePointView()),
+                    onTap: () => Get.to(() => RecycleInfo()),
                     child: Image.asset('assets/icons/recycle_button.png',
                         width: size.width * 0.8)),
                 _buildVerticalSpace(size.height),

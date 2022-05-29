@@ -18,7 +18,10 @@ class DrugStoreRoadPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text('Konum'),
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
           centerTitle: true,
         ),
         body: GoogleMap(

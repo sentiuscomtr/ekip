@@ -14,7 +14,10 @@ class FindMedicinePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text('İlaç Bul'),
+          title: Image.asset(
+            'assets/icons/ekip_short.png',
+            width: size.width * 0.2,
+          ),
           centerTitle: true,
         ),
         body: Column(
@@ -39,23 +42,7 @@ class FindMedicinePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Obx(() {
-                  return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 8.0,
-                        crossAxisSpacing: 8.0,
-                      ),
-                      itemCount: _searchController.searchResult.length,
-                      itemBuilder: (context, index) {
-                        var item = _searchController.searchResult[index];
-                        return ListTile(
-                          onTap: () => Get.to(() => MedDetailsPage(item: item)),
-                          tileColor: someKindOfGrey,
-                          title: Text(item.name),
-                          subtitle: Text(item.size.toString() + 'mg'),
-                        );
-                      });
+                  return _buildList();
                 }),
               ),
             )
@@ -65,5 +52,24 @@ class FindMedicinePage extends StatelessWidget {
 
   _buildVerticalSpace(size) {
     return SizedBox(height: size.height * 0.03);
+  }
+
+  Widget _buildList() {
+    return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 8.0,
+        ),
+        itemCount: _searchController.searchResult.length,
+        itemBuilder: (context, index) {
+          var item = _searchController.searchResult[index];
+          return ListTile(
+            onTap: () => Get.to(() => MedDetailsPage(item: item)),
+            tileColor: someKindOfGrey,
+            title: Text(item.name),
+            subtitle: Text(item.size.toString() + 'mg'),
+          );
+        });
   }
 }
