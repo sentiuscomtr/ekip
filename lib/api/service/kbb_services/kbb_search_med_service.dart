@@ -14,7 +14,7 @@ class SearchMedicineService {
     final response = await http.get(uri, headers: headers);
     if (response.statusCode == 200) {
       var page = BasePage(map: json.decode(response.body));
-      log(response.body);
+      log('response body is => ${response.body}');
       List<MedicineResponseModel> list = [];
 
       page.content.forEach((element) {

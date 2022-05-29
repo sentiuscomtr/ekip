@@ -22,33 +22,19 @@ class RoleSelectPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomElevatedButton(
-                  buttonStyle: ElevatedButtonThemes.loginButtonStyle(
-                      size.width * 0.5, size.height * 0.06),
-                  child: Text('Belediye Girişi',
-                      style: TextStyles.loginButtonText()),
-                  onPressed: () {
-                    Get.to(() => KbbLoginPage());
-                  },
+                Image.asset('assets/icons/ekip_long.png',
+                    width: size.width * 0.5),
+                SizedBox(height: size.height * 0.04),
+                InkWell(
+                  onTap: () => Get.to(() => KbbLoginPage()),
+                  child: Image.asset('assets/icons/admin_login_button.png',
+                      width: size.width * 0.8),
                 ),
                 SizedBox(height: size.height * 0.04),
-                CustomElevatedButton(
-                    buttonStyle: ElevatedButtonThemes.loginButtonStyle(
-                        size.width * 0.5, size.height * 0.06),
-                    child: Text('Eczane Girişi',
-                        style: TextStyles.loginButtonText()),
-                    onPressed: () {
-                      Get.to(() => PharmacyLoginPage());
-                    }),
-                SizedBox(height: size.height * 0.04),
-                CustomElevatedButton(
-                  buttonStyle: ElevatedButtonThemes.loginButtonStyle(
-                      size.width * 0.5, size.height * 0.06),
-                  child: Text('Kullanıcı Girişi',
-                      style: TextStyles.loginButtonText()),
-                  onPressed: () {
-                    Get.to(() => UserLoginPage());
-                  },
+                InkWell(
+                  child: Image.asset('assets/icons/user_login_button.png',
+                      width: size.width * 0.8),
+                  onTap: () => Get.to(() => UserLoginPage()),
                 )
               ],
             )));

@@ -26,8 +26,10 @@ class ApiEndpoint {
   ///KBB
   static const String kbbLogin = _baseUrl + '/auth/kbb/login';
   static const String saveMedicine = _baseUrl + '/kbb/medicine';
-  static const String saveRecycle = _baseUrl + 'kbb/recycle';
+  static const String saveRecycle = _baseUrl + '/kbb/recycle';
 
   ///Search Med
   static const String searchMed = _baseUrl + '/home/medicine';
+
+  static const String getMedDetails = _baseUrl + '/home/medicine';
 }

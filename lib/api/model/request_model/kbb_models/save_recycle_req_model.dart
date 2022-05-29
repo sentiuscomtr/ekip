@@ -14,9 +14,14 @@ class SaveRecycleReqModel {
     return {
       'medicineId': medicineId,
       'number': number,
-      'skt': skt,
+      'skt': skt.toUtc().toIso8601String(),
       'type': type.name,
     };
+  }
+
+  @override
+  toString() {
+    return toJson().toString();
   }
 }
 

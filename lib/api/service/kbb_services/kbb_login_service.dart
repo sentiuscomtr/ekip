@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:new_project1/api/endpoint/endpoint.dart';
@@ -14,6 +15,8 @@ class KBBLoginService {
 
     final response = await http.post(uri, body: body, headers: headers);
     if (response.statusCode == 200) {
+      GetStorage().write('kbb_token', json.decode(response.body)['token']);
+
       return LoginStatus.SUCCESSFULL;
     } else {
       log(response.body.toString());

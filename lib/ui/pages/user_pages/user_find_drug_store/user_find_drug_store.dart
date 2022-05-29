@@ -96,10 +96,6 @@ class FindDrugStore extends StatelessWidget {
                 MapUtils.openMap(element.lat, element.lang);
               },
             ),
-            CustomElevatedButton(
-                buttonStyle: ElevatedButtonThemes.amberStyle(),
-                child: const Text('İletişim'),
-                onPressed: () => Get.to(() => UserChatPage())),
             SizedBox(
               height: size.height * 0.03,
             ),

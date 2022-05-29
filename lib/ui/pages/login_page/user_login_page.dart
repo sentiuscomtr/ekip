@@ -31,6 +31,10 @@ class UserLoginPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Image.asset('assets/icons/ekip_long.png', width: size.width * 0.4),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
         SizedBox(
           width: size.width * 0.7,
           child: CustomTextField(
@@ -48,7 +52,7 @@ class UserLoginPage extends StatelessWidget {
         Obx(
           () => CustomElevatedButton(
             buttonStyle: ElevatedButtonThemes.greenStyle(size.width * 0.7,
-                size.height * 0.05, controller.isPhoneValid.value),
+                size.height * 0.06, controller.isPhoneValid.value),
             onPressed: () {
               controller.isPhoneValid.value ? controller.sendPhone() : null;
             },
@@ -63,6 +67,10 @@ class UserLoginPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Image.asset('assets/icons/ekip_long.png', width: size.width * 0.4),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
         SizedBox(
           width: size.width * 0.7,
           child: CustomTextField(
@@ -78,7 +86,7 @@ class UserLoginPage extends StatelessWidget {
         ),
         CustomElevatedButton(
             buttonStyle: ElevatedButtonThemes.greenStyle(size.width * 0.7,
-                size.height * 0.05, controller.isPasswordValid.value),
+                size.height * 0.06, controller.isPasswordValid.value),
             child: const Text('Giriş Yap'),
             onPressed: () {
               controller.sendPassword();

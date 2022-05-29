@@ -4,6 +4,7 @@ import 'package:new_project1/api/model/request_model/kbb_models/save_recycle_req
 import 'package:new_project1/state/kbb_controller/kbb_medicine_contoller.dart';
 import 'package:new_project1/ui/themes/elevated_button_theme.dart';
 import 'package:new_project1/ui/widgets/buttons/custom_elevated_button.dart';
+import 'package:new_project1/ui/widgets/date_picker/date_picker_dialog.dart';
 import 'package:new_project1/ui/widgets/text_fields/custom_text_field.dart';
 
 class KbbSaveRecycleMedView extends StatelessWidget {
@@ -13,43 +14,66 @@ class KbbSaveRecycleMedView extends StatelessWidget {
     final controller = Get.put(KbbMedicineController());
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Geri Dönüştürülecek İlaç Ekle'),
+          title: const Text('Geri Dönüştürülecek İlaç Ekle',
+              style: TextStyle(color: Colors.black)),
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
-        body: Column(
-          children: [
-            CustomTextField(
-                onChanged: (val) {},
-                controller: controller.medicineId,
-                hintText: 'Medicine ID',
-                labelText: 'Medicine ID'),
-            CustomTextField(
-              onChanged: (val) {},
-              controller: controller.number,
-              hintText: 'Adet',
-              labelText: 'Adet',
-            ),
-            CustomTextField(
-                onChanged: (val) {},
-                controller: controller.skt,
-                hintText: 'Son Kullanım Tarihi',
-                labelText: 'Son Kullanım Tarihi'),
-            Obx(() {
-              return DropdownButton<RecycleType>(
-                  value: controller.selectedType.value,
-                  items: RecycleType.values
-                      .map((e) => DropdownMenuItem<RecycleType>(
-                          value: e, child: Text(e.name)))
-                      .toList(),
-                  onChanged: (e) => controller.selectRecycleType(e!));
-            }),
-            CustomElevatedButton(
-                onPressed: () => controller.saveRecycle(),
-                buttonStyle: ElevatedButtonThemes.greenStyle(
-                    size.width * 0.5, size.height * 0.05, true),
-                child: const Text('Ekle'))
-          ],
+        body: Center(
+          child: Column(
+            children: [
+              _buildVerticalSpace(size),
+              SizedBox(
+                width: size.width * 0.7,
+                child: CustomTextField(
+                    onChanged: (val) {},
+                    controller: controller.medicineId,
+                    hintText: 'Medicine ID',
+                    labelText: 'Medicine ID'),
+              ),
+              _buildVerticalSpace(size),
+              SizedBox(
+                width: size.width * 0.7,
+                child: CustomTextField(
+                  onChanged: (val) {},
+                  controller: controller.number,
+                  hintText: 'Adet',
+                  labelText: 'Adet',
+                ),
+              ),
+              _buildVerticalSpace(size),
+              Obx(() {
+                return DateTimeInputContainer(
+                    renderContext: context,
+                    text: controller.sktStr.value == ''
+                        ? 'Son Kullanma Tarihi'
+                        : controller.sktStr.value,
+                    changed: (DateTime dt) {
+                      controller.listenerDateTime(dt);
+                    });
+              }),
+              _buildVerticalSpace(size),
+              Obx(() {
+                return DropdownButton<RecycleType>(
+                    value: controller.selectedType.value,
+                    items: RecycleType.values
+                        .map((e) => DropdownMenuItem<RecycleType>(
+                            value: e, child: Text(e.name)))
+                        .toList(),
+                    onChanged: (e) => controller.selectRecycleType(e!));
+              }),
+              _buildVerticalSpace(size),
+              CustomElevatedButton(
+                  onPressed: () => controller.saveRecycle(),
+                  buttonStyle: ElevatedButtonThemes.greenStyle(
+                      size.width * 0.5, size.height * 0.05, true),
+                  child: const Text('Ekle'))
+            ],
+          ),
         ));
+  }
+
+  _buildVerticalSpace(size) {
+    return SizedBox(height: size.height * 0.03);
   }
 }
