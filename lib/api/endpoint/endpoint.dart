@@ -1,5 +1,5 @@
 class ApiEndpoint {
-  static const String _baseUrl = 'https://corap.xyz/api';
+  static const String _baseUrl = 'http://corap.xyz:8081/api';
 
   //HOME-CONTROLLER
   static const String login = _baseUrl + "/home/login/user";
@@ -16,6 +16,7 @@ class ApiEndpoint {
   static const String postMessage = _baseUrl + '/user/chat';
 
   static const String getChatMessage = _baseUrl + '/user/chat/message/id';
+  
   static const String getRecyclePoints = _baseUrl + '/home/komek';
 
   ///PHARMACY
